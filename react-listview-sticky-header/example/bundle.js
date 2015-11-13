@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "6b6fc7e0756c257be9dc"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "7934ce25a43639dcbb76"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -584,22 +584,23 @@
 	    height: '400px',
 	    overflowY: 'auto',
 	    outline: '1px dashed blue',
-	    width: '40%'
+	    width: '400px'
 	  },
 	
 	  ul: {
 	    margin: '0px',
-	    listStyleType: 'none'
+	    listStyleType: 'none',
+	    padding: '0'
 	  },
 	
 	  fixedPosition: {
 	    position: 'fixed',
-	    width: '300px',
+	    width: '383px',
 	    top: '0px'
 	  },
 	
 	  listHeader: {
-	    width: '300px',
+	    width: '383px',
 	    height: '20px',
 	    background: 'green',
 	    color: 'white'
