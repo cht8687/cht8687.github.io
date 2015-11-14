@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7934ce25a43639dcbb76"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "2ce1b777f123ff65a54a"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -21566,7 +21566,7 @@
 	            ignoreCheck = true;
 	          }
 	        }
-	        if (!ignoreCheck && c.originalPosition < currentWindowScrollTop + _this2.state._headerFixedPosition + currentHeaderHeight) {
+	        if (!ignoreCheck && c.originalPosition < currentWindowScrollTop + _this2.state._headerFixedPosition + currentHeaderHeight * index) {
 	          Object.assign(currentNode.style, _this2.props.styles.fixedPosition);
 	          // apply top value
 	          currentNode.style.top = _this2.state._headerFixedPosition + 'px';
