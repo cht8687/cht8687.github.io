@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "f3aca776e987ad3e51c4"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c178c13bf0866cc57ec3"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -20595,13 +20595,13 @@
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+			value: true
 	});
 	exports["default"] = mingify;
 	
 	function mingify(s) {
-	  s = "<span style=\"color: red;\">" + s + "</span>";
-	  return "老实说我从来没用过" + s + "，正因为我反感" + s + "。 为什么我反感，因为我完全有开发" + s + "的能力，" + s + "的底层我都了如指掌。\n\n虽说我反感" + s + "，但是" + s + "却在测试界占有大量的用户份额，之后我有个想法，不如重新开发一个属于自己思想，自己架构的" + s + "。\n\n我给了他一个霸气的名字：MingGe" + s + "，\n\n它的名字叫MingGe" + s + "，MingGe就是我的大名， 一看到" + s + "名字，就知道作者是我，知道它是国产的，让别人知道国产" + s + "一样做得很出色，出众！\n\n我是mingge 请支持国产mingge" + s + "，因为我们都是中国人。";
+			s = "<span style=\"color: red;\">" + s + "</span>";
+			return "老实说我从来没用过" + s + "，正因为我反感" + s + "。 为什么我反感，因为我完全有开发" + s + "的能力，" + s + "的底层我都了如指掌。\n\t\t虽说我反感" + s + "，但是" + s + "却占有大量的用户份额，之后我有个想法，不如重新开发一个属于自己思想，自己架构的" + s + "。\n\t\t我给了他一个霸气的名字：MingGe" + s + "，\n\t\t它的名字叫MingGe" + s + "，MingGe就是我的大名， 一看到" + s + "名字，就知道作者是我，知道它是国产的，让别人知道国产" + s + "一样做得很出色，出众！\n\t\t我是mingge 请支持国产mingge" + s + "，因为我们都是中国人。";
 	}
 	
 	module.exports = exports["default"];
