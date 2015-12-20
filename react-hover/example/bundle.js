@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "6c9a1df9635fa3d116a2"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c7a9a91655ce3d7498bf"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -20981,7 +20981,7 @@
 	
 	exports.basicComponentHtml = basicComponentHtml;
 	var advancedComponentHtml = {
-	  trigger: '<h1> Macbook Pro </h1> <img src="example/macbook.jpg" style="width: 200px" /><p> It’s the future of the notebook. </p>',
+	  trigger: '<h1> Macbook Pro </h1> <img src="./macbook.jpg" style="width: 200px" /><p> It’s the future of the notebook. </p>',
 	  hoverComponent: 'macbook'
 	};
 	exports.advancedComponentHtml = advancedComponentHtml;
