@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "c7a9a91655ce3d7498bf"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "2964c49941560a6c0e86"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -591,6 +591,20 @@
 	
 	var componentHtml = _interopRequireWildcard(_componentHtml);
 	
+	var optionsCursorFalse = {
+	  followCursor: false
+	};
+	
+	var optionsCursorTrue = {
+	  followCursor: true
+	};
+	
+	var optionsCursorTrueWithMargin = {
+	  followCursor: true,
+	  shiftX: 20,
+	  shiftY: 0
+	};
+	
 	var App = (function (_Component) {
 	  _inherits(App, _Component);
 	
@@ -614,7 +628,8 @@
 	        ),
 	        _react2['default'].createElement(_2['default'], {
 	          styles: styles.basic,
-	          componentHtml: componentHtml.basicComponentHtml
+	          componentHtml: componentHtml.basicComponentHtml,
+	          options: optionsCursorFalse
 	        }),
 	        _react2['default'].createElement(
 	          'h3',
@@ -623,7 +638,18 @@
 	        ),
 	        _react2['default'].createElement(_2['default'], {
 	          styles: styles.advanced,
-	          componentHtml: componentHtml.advancedComponentHtml
+	          componentHtml: componentHtml.advancedComponentHtml,
+	          options: optionsCursorTrue
+	        }),
+	        _react2['default'].createElement(
+	          'h3',
+	          { style: { margin: '0 auto', marginTop: '100px', textAlign: 'center' } },
+	          ' You can set curor follow options, so the pop up will follow the mouse cursor.'
+	        ),
+	        _react2['default'].createElement(_2['default'], {
+	          styles: styles.cursor,
+	          componentHtml: componentHtml.advancedComponentHtml,
+	          options: optionsCursorTrueWithMargin
 	        })
 	      );
 	    }
@@ -20563,7 +20589,8 @@
 	    key: 'propTypes',
 	    value: {
 	      styles: _react.PropTypes.object.isRequired,
-	      componentHtml: _react.PropTypes.object.isRequired
+	      componentHtml: _react.PropTypes.object.isRequired,
+	      options: _react.PropTypes.object.isRequired
 	    },
 	    enumerable: true
 	  }]);
@@ -20590,7 +20617,8 @@
 	        _react2['default'].createElement(_libTriggerComponent2['default'], {
 	          styles: styles,
 	          componentHtml: componentHtml,
-	          setVisibility: this.setVisibility.bind(this)
+	          setVisibility: this.setVisibility.bind(this),
+	          getCursorPos: this.getCursorPos.bind(this)
 	        }),
 	        _react2['default'].createElement(_libHoverComponent2['default'], {
 	          styles: styles,
@@ -20611,6 +20639,32 @@
 	        Object.assign(currentHoverComponent, { display: 'none' });
 	      }
 	      Object.assign(currentStyles, currentHoverComponent);
+	      this.setState({
+	        styles: currentStyles
+	      });
+	    }
+	  }, {
+	    key: 'getCursorPos',
+	    value: function getCursorPos(e) {
+	      var cursorX = e.pageX;
+	      var cursorY = e.pageY;
+	
+	      var _props$options = this.props.options;
+	      var followCursor = _props$options.followCursor;
+	      var shiftX = _props$options.shiftX;
+	      var shiftY = _props$options.shiftY;
+	      var styles = this.state.styles;
+	
+	      var currentStyles = styles;
+	
+	      if (!followCursor) {
+	        return;
+	      }
+	
+	      var currentHoverComponent = styles.hoverComponent;
+	      Object.assign(currentHoverComponent, { top: cursorY + shiftY, left: cursorX + shiftX });
+	      Object.assign(currentStyles, currentHoverComponent);
+	
 	      this.setState({
 	        styles: currentStyles
 	      });
@@ -20679,7 +20733,7 @@
 	
 	      return _react2['default'].createElement('div', {
 	        style: styles.hoverComponent,
-	        dangerouslySetInnerHTML: { __html: componentHtml.trigger }
+	        dangerouslySetInnerHTML: { __html: componentHtml.hoverComponent }
 	      });
 	    }
 	  }]);
@@ -20854,7 +20908,8 @@
 	    value: {
 	      styles: _react.PropTypes.object.isRequired,
 	      componentHtml: _react.PropTypes.object.isRequired,
-	      setVisibility: _react.PropTypes.func.isRequired
+	      setVisibility: _react.PropTypes.func.isRequired,
+	      getCursorPos: _react.PropTypes.func.isRequired
 	    },
 	    enumerable: true
 	  }]);
@@ -20876,13 +20931,13 @@
 	        style: styles.trigger,
 	        onMouseOver: this.onMouseOver.bind(this),
 	        onMouseOut: this.onMouseOut.bind(this),
-	        dangerouslySetInnerHTML: { __html: componentHtml.hoverComponent }
+	        onMouseMove: this.onMouseMove.bind(this),
+	        dangerouslySetInnerHTML: { __html: componentHtml.trigger }
 	      });
 	    }
 	  }, {
 	    key: 'onMouseOver',
 	    value: function onMouseOver() {
-	      console.log('hover');
 	      var setVisibility = this.props.setVisibility;
 	
 	      setVisibility(true);
@@ -20893,6 +20948,13 @@
 	      var setVisibility = this.props.setVisibility;
 	
 	      setVisibility(false);
+	    }
+	  }, {
+	    key: 'onMouseMove',
+	    value: function onMouseMove(e) {
+	      var getCursorPos = this.props.getCursorPos;
+	
+	      getCursorPos(e);
 	    }
 	  }]);
 	
@@ -20958,7 +21020,26 @@
 	    width: '200px'
 	  }
 	};
+	
 	exports.advanced = advanced;
+	var cursor = {
+	  trigger: {
+	    background: '#E0037E',
+	    width: '200px',
+	    margin: '0 auto'
+	  },
+	
+	  hoverComponent: {
+	    height: '200px',
+	    overflowY: 'auto',
+	    outline: '1px solid blue',
+	    width: '300px',
+	    background: '#E8E27E',
+	    display: 'none',
+	    position: 'absolute'
+	  }
+	};
+	exports.cursor = cursor;
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (true) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(173); if (makeExportsHot(module, __webpack_require__(65))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "css.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)(module)))
@@ -20975,14 +21056,14 @@
 	  value: true
 	});
 	var basicComponentHtml = {
-	  trigger: '<h1> pop up header </h1> <p> pop up content </p>',
-	  hoverComponent: 'hover me'
+	  hoverComponent: '<h1> pop up header </h1> <p> pop up content </p>',
+	  trigger: 'hover me'
 	};
 	
 	exports.basicComponentHtml = basicComponentHtml;
 	var advancedComponentHtml = {
-	  trigger: '<h1> Macbook Pro </h1> <img src="./macbook.jpg" style="width: 200px" /><p> It’s the future of the notebook. </p>',
-	  hoverComponent: 'macbook'
+	  hoverComponent: '<h1> Macbook Pro </h1> <img src="./macbook.jpg" style="width: 200px" /><p> It’s the future of the notebook. </p>',
+	  trigger: 'macbook'
 	};
 	exports.advancedComponentHtml = advancedComponentHtml;
 
