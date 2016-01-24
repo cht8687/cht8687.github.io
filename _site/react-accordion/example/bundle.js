@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "ba10de0be1763ba14cd7"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "49b246bbb663a0d2aea2"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -575,6 +575,8 @@
 	
 	var _const = __webpack_require__(195);
 	
+	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../react-accordion.css\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -582,39 +584,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var styles = {
-	  outerDiv: {
-	    overflowY: 'auto',
-	    outline: '1px solid #ADBCE0',
-	    width: '410px'
-	  },
-	
-	  ul: {
-	    margin: '0px',
-	    listStyleType: 'none',
-	    padding: '0'
-	  },
-	
-	  fixedPosition: {
-	    position: 'fixed',
-	    width: '383px',
-	    top: '0px'
-	  },
-	
-	  listHeader: {
-	    width: '390px',
-	    height: '20px',
-	    background: 'grey',
-	    color: 'white',
-	    padding: '5px 0px 5px 20px',
-	    marginBottom: '3px'
-	  },
-	
-	  listItems: {
-	    color: 'blue'
-	  }
-	};
 	
 	var App = (function (_Component) {
 	  _inherits(App, _Component);
@@ -636,8 +605,7 @@
 	        data: data,
 	        options: options,
 	        headerAttName: 'headerName',
-	        itemsAttName: 'items',
-	        styles: styles
+	        itemsAttName: 'items'
 	      });
 	    }
 	  }]);
@@ -20547,8 +20515,6 @@
 	
 	'use strict';
 	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 	
 	Object.defineProperty(exports, "__esModule", {
@@ -20601,12 +20567,6 @@
 	      var _props = this.props;
 	      var headerAttName = _props.headerAttName;
 	      var itemsAttName = _props.itemsAttName;
-	      var _props$styles = this.props.styles;
-	      var outerDiv = _props$styles.outerDiv;
-	      var ul = _props$styles.ul;
-	      var listHeader = _props$styles.listHeader;
-	      var listItems = _props$styles.listItems;
-	      var li = _props$styles.li;
 	      var data = this.state.data;
 	
 	      var _refi = 0;
@@ -20620,14 +20580,15 @@
 	
 	      return _react2.default.createElement(
 	        'div',
-	        { ref: 'listview', style: outerDiv },
+	        { ref: 'listview', className: 'react-accordion_outerDiv' },
 	        _react2.default.createElement(
 	          'ul',
-	          { style: ul },
+	          { className: 'react-accordion_ul' },
 	          Object.keys(data).map(function (k, index) {
 	            var header = data[k][headerAttName];
 	            var items = data[k][itemsAttName];
 	            var isOpened = data[k].isOpened;
+	            var height = data[k].height;
 	
 	            _refi++;
 	            var headerRef = makeHeaderRef();
@@ -20638,7 +20599,7 @@
 	              {
 	                key: index,
 	                defaultStyle: { h: 0 },
-	                style: { h: (0, _reactMotion.spring)(isOpened ? 110 : 0) } },
+	                style: { h: (0, _reactMotion.spring)(isOpened ? height : 0) } },
 	              function (_ref) {
 	                var h = _ref.h;
 	                return _react2.default.createElement(
@@ -20651,21 +20612,21 @@
 	                      ref: headerRef,
 	                      header: header,
 	                      headerIndex: index,
-	                      styles: listHeader,
+	                      className: 'react-accordion_listHeader',
 	                      handleToggle: _this2.handleToggle.bind(_this2, index)
 	                    }),
 	                    _react2.default.createElement(
 	                      'div',
 	                      {
-	                        style: _extends({
+	                        style: {
 	                          display: 'block',
 	                          overflow: 'hidden',
 	                          height: '' + h
-	                        }, listItems) },
+	                        } },
 	                      _react2.default.createElement(_ContentManager2.default, {
 	                        ref: itemRef,
 	                        items: items,
-	                        styles: listItems
+	                        className: 'react-accordion_listItems'
 	                      })
 	                    )
 	                  )
@@ -20706,8 +20667,7 @@
 	  data: _react.PropTypes.array.isRequired,
 	  options: _react.PropTypes.object.isRequired,
 	  headerAttName: _react.PropTypes.string.isRequired,
-	  itemsAttName: _react.PropTypes.string.isRequired,
-	  styles: _react.PropTypes.object.isRequired
+	  itemsAttName: _react.PropTypes.string.isRequired
 	};
 	exports.default = ReactAccordion;
 	
@@ -20755,11 +20715,10 @@
 	      var _props = this.props;
 	      var header = _props.header;
 	      var headerIndex = _props.headerIndex;
-	      var styles = _props.styles;
 	
 	      return _react2.default.createElement(
 	        "div",
-	        { ref: "header", style: styles, onClick: this.handleClick.bind(this, headerIndex) },
+	        { ref: "header", className: "react-accordion_listHeader", onClick: this.handleClick.bind(this, headerIndex) },
 	        header
 	      );
 	    }
@@ -20778,7 +20737,6 @@
 	Header.propTypes = {
 	  header: _react.PropTypes.string.isRequired,
 	  headerIndex: _react.PropTypes.number.isRequired,
-	  styles: _react.PropTypes.object.isRequired,
 	  handleToggle: _react.PropTypes.func.isRequired
 	};
 	exports.default = Header;
@@ -20957,9 +20915,7 @@
 	  _createClass(ContentManager, [{
 	    key: 'render',
 	    value: function render() {
-	      var _props = this.props;
-	      var items = _props.items;
-	      var styles = _props.styles;
+	      var items = this.props.items;
 	
 	      return _react2.default.createElement(
 	        'span',
@@ -20967,8 +20923,7 @@
 	        [].concat(_toConsumableArray(items)).map(function (item, index) {
 	          return _react2.default.createElement(_Content2.default, {
 	            key: index,
-	            item: item.paragraph,
-	            styles: styles
+	            item: item.paragraph
 	          });
 	        })
 	      );
@@ -20979,8 +20934,7 @@
 	})(_react.Component);
 	
 	ContentManager.propTypes = {
-	  items: _react.PropTypes.array.isRequired,
-	  styles: _react.PropTypes.object.isRequired
+	  items: _react.PropTypes.array.isRequired
 	};
 	exports.default = ContentManager;
 	
@@ -20993,7 +20947,7 @@
 
 	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(3), RootInstanceProvider = __webpack_require__(11), ReactMount = __webpack_require__(13), React = __webpack_require__(65); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 	
-	'use strict';
+	"use strict";
 	
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 	
@@ -21023,17 +20977,15 @@
 	  }
 	
 	  _createClass(Content, [{
-	    key: 'render',
+	    key: "render",
 	    value: function render() {
-	      var _props = this.props;
-	      var item = _props.item;
-	      var styles = _props.styles;
+	      var item = this.props.item;
 	
 	      return _react2.default.createElement(
-	        'span',
-	        { style: styles },
+	        "span",
+	        { className: "react-accordion_listItems" },
 	        item,
-	        _react2.default.createElement('br', null)
+	        _react2.default.createElement("br", null)
 	      );
 	    }
 	  }]);
@@ -21042,8 +20994,7 @@
 	})(_react.Component);
 	
 	Content.propTypes = {
-	  item: _react.PropTypes.string.isRequired,
-	  styles: _react.PropTypes.object.isRequired
+	  item: _react.PropTypes.string.isRequired
 	};
 	exports.default = Content;
 	
@@ -22403,25 +22354,29 @@
 	  isOpened: true,
 	  items: [{
 	    paragraph: "Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate."
-	  }]
+	  }],
+	  height: 100
 	}, {
 	  headerName: "Section 2",
 	  isOpened: false,
 	  items: [{
 	    paragraph: "Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate."
-	  }]
+	  }],
+	  height: 100
 	}, {
 	  headerName: "Section 3",
 	  isOpened: false,
 	  items: [{
 	    paragraph: "Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate."
-	  }]
+	  }],
+	  height: 100
 	}, {
 	  headerName: "Section 4",
 	  isOpened: false,
 	  items: [{
 	    paragraph: "Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate."
-	  }]
+	  }],
+	  height: 100
 	}];
 	
 	var OPTIONS = exports.OPTIONS = {
