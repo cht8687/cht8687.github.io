@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e20eb42d9492b224f160"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "788789bcb8ecb45bafaf"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -20965,6 +20965,7 @@
 	        onMouseMove: this.onMouseMove.bind(this),
 	        onTouchStart: this.onTouchStart.bind(this),
 	        onTouchEnd: this.onTouchEnd.bind(this),
+	        onTouchMove: this.onTouchMove.bind(this),
 	        dangerouslySetInnerHTML: { __html: componentHtml.trigger }
 	      });
 	    }
@@ -21002,6 +21003,13 @@
 	      var setVisibility = this.props.setVisibility;
 	
 	      setVisibility(false);
+	    }
+	  }, {
+	    key: 'onTouchMove',
+	    value: function onTouchMove(e) {
+	      var getCursorPos = this.props.getCursorPos;
+	
+	      getCursorPos(e);
 	    }
 	  }]);
 	
