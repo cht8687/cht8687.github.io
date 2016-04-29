@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -28,7 +28,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ReactListView = (function (_Component) {
+var ReactListView = function (_Component) {
   _inherits(ReactListView, _Component);
 
   function ReactListView(props) {
@@ -52,10 +52,18 @@ var ReactListView = (function (_Component) {
     }
   }, {
     key: 'componentWillUnmount',
-    value: function componentWillUnmount() {}
-  }, {
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate() {}
+    value: function componentWillUnmount() {
+      var _this2 = this;
+
+      // unRegister events listeners with the listview div
+      this.state.events.forEach(function (type) {
+        if (window.addEventListener) {
+          (0, _reactDom.findDOMNode)(_this2.refs.listview).removeEventListener(type, _this2.onScroll.bind(_this2), false);
+        } else {
+          (0, _reactDom.findDOMNode)(_this2.refs.listview).attachEvent('on' + type, _this2.onScroll.bind(_this2), false);
+        }
+      });
+    }
   }, {
     key: 'refsToArray',
     value: function refsToArray(ctx, prefix) {
@@ -68,7 +76,7 @@ var ReactListView = (function (_Component) {
   }, {
     key: 'initStickyHeaders',
     value: function initStickyHeaders() {
-      var _this2 = this;
+      var _this3 = this;
 
       var listHeaders = this.refsToArray(this, 'ListHeader');
       var _originalPositions = listHeaders.map(function (l) {
@@ -88,30 +96,30 @@ var ReactListView = (function (_Component) {
       // Register events listeners with the listview div
       this.state.events.forEach(function (type) {
         if (window.addEventListener) {
-          (0, _reactDom.findDOMNode)(_this2.refs.listview).addEventListener(type, _this2.onScroll.bind(_this2), false);
+          (0, _reactDom.findDOMNode)(_this3.refs.listview).addEventListener(type, _this3.onScroll.bind(_this3), false);
         } else {
-          (0, _reactDom.findDOMNode)(_this2.refs.listview).attachEvent('on' + type, _this2.onScroll.bind(_this2), false);
+          (0, _reactDom.findDOMNode)(_this3.refs.listview).attachEvent('on' + type, _this3.onScroll.bind(_this3), false);
         }
       });
     }
   }, {
     key: 'onScroll',
     value: function onScroll() {
-      var _this3 = this;
+      var _this4 = this;
 
       // update current header positions and apply fixed positions to the top one
       var currentWindowScrollTop = 2 * this.state._headerFixedPosition - this.state._firstChildWrapper.getBoundingClientRect().top;
       this.state._instances._originalPositions.forEach(function (c, index) {
         var currentNode = c.headerObj.refs.header;
         var currentHeaderHeight = parseInt(currentNode.style.height, 10);
-        var nextNode = undefined,
+        var nextNode = void 0,
             topPos = null;
         var ignoreCheck = false;
-        if (index < _this3.state._instances._originalPositions.length - 1) {
-          nextNode = _this3.state._instances._originalPositions[index + 1];
+        if (index < _this4.state._instances._originalPositions.length - 1) {
+          nextNode = _this4.state._instances._originalPositions[index + 1];
         }
         if (nextNode) {
-          topPos = -(currentWindowScrollTop + (index + 2) * currentHeaderHeight - nextNode.originalPosition - _this3.state._headerFixedPosition);
+          topPos = -(currentWindowScrollTop + (index + 2) * currentHeaderHeight - nextNode.originalPosition - _this4.state._headerFixedPosition);
         }
         if (index == 0) {
           if (currentWindowScrollTop == c.originalPosition) {
@@ -119,10 +127,10 @@ var ReactListView = (function (_Component) {
             ignoreCheck = true;
           }
         }
-        if (!ignoreCheck && c.originalPosition < currentWindowScrollTop + _this3.state._headerFixedPosition + currentHeaderHeight * index) {
-          Object.assign(currentNode.style, _this3.props.styles.fixedPosition);
+        if (!ignoreCheck && c.originalPosition < currentWindowScrollTop + _this4.state._headerFixedPosition + currentHeaderHeight * index) {
+          Object.assign(currentNode.style, _this4.props.styles.fixedPosition);
           // apply top value
-          currentNode.style.top = _this3.state._headerFixedPosition + 'px';
+          currentNode.style.top = _this4.state._headerFixedPosition + 'px';
           if (currentWindowScrollTop + (index + 2) * currentHeaderHeight > nextNode.originalPosition) {
             currentNode.style.position = 'absolute';
             currentNode.style.top = topPos + 'px';
@@ -180,7 +188,7 @@ var ReactListView = (function (_Component) {
   }]);
 
   return ReactListView;
-})(_react.Component);
+}(_react.Component);
 
 ReactListView.propTypes = {
   data: _react.PropTypes.array.isRequired,
