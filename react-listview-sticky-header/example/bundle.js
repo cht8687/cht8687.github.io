@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d05d3a51a3ca1419f154"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d621b175dc6771704f10"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -640,7 +640,7 @@
 	
 	  listHeader: {
 	    width: '383px',
-	    height: '60px',
+	    height: '27px',
 	    background: 'green',
 	    color: 'white'
 	  },
@@ -21181,7 +21181,7 @@
 	      var _this4 = this;
 	
 	      // update current header positions and apply fixed positions to the top one
-	      var currentWindowScrollTop = 2 * this.state._headerFixedPosition - this.state._firstChildWrapper.getBoundingClientRect().top;
+	      var currentWindowScrollTop = this.state._headerFixedPosition - this.state._firstChildWrapper.getBoundingClientRect().top;
 	      this.state._instances._originalPositions.forEach(function (c, index) {
 	        var currentNode = c.headerObj.refs.header;
 	        var currentHeaderHeight = parseInt(currentNode.style.height, 10);
@@ -21192,7 +21192,7 @@
 	          nextNode = _this4.state._instances._originalPositions[index + 1];
 	        }
 	        if (nextNode) {
-	          topPos = -(currentWindowScrollTop + (index + 2) * currentHeaderHeight - nextNode.originalPosition - _this4.state._headerFixedPosition);
+	          // temporily disable the clapsed effect
 	        }
 	        if (index === 0) {
 	          if (currentWindowScrollTop === c.originalPosition) {
@@ -21200,11 +21200,11 @@
 	            ignoreCheck = true;
 	          }
 	        }
-	        if (!ignoreCheck && c.originalPosition < currentWindowScrollTop + _this4.state._headerFixedPosition + currentHeaderHeight * 1) {
+	        if (!ignoreCheck && c.originalPosition < currentWindowScrollTop + _this4.state._headerFixedPosition + currentHeaderHeight) {
 	          Object.assign(currentNode.style, _this4.props.styles.fixedPosition);
 	          // apply top value
 	          currentNode.style.top = _this4.state._headerFixedPosition + 'px';
-	          if (currentWindowScrollTop + (index + 2) * currentHeaderHeight > nextNode.originalPosition) {
+	          if (currentWindowScrollTop + index * currentHeaderHeight > nextNode.originalPosition) {
 	            currentNode.style.position = 'absolute';
 	            currentNode.style.top = topPos + 'px';
 	          }
@@ -21267,11 +21267,7 @@
 	  data: _react.PropTypes.array.isRequired,
 	  headerAttName: _react.PropTypes.string.isRequired,
 	  itemsAttName: _react.PropTypes.string.isRequired,
-	  styles: _react.PropTypes.object.isRequired,
-	  events: _react.PropTypes.array,
-	  _positionMap: _react.PropTypes.object,
-	  _topPos: _react.PropTypes.string,
-	  _topWrapper: _react.PropTypes.object
+	  styles: _react.PropTypes.object.isRequired
 	};
 	exports.default = ReactListView;
 	
@@ -21600,6 +21596,156 @@
 	  }]
 	}, {
 	  headerName: 'ListD is Dynamic',
+	  items: [{
+	    title: 'items1'
+	  }, {
+	    title: 'items2'
+	  }, {
+	    title: 'items3'
+	  }, {
+	    title: 'items4'
+	  }, {
+	    title: 'items5'
+	  }, {
+	    title: 'items6'
+	  }]
+	}, {
+	  headerName: 'ListE',
+	  items: [{
+	    title: 'items1'
+	  }, {
+	    title: 'items2'
+	  }, {
+	    title: 'items3'
+	  }, {
+	    title: 'items4'
+	  }, {
+	    title: 'items5'
+	  }, {
+	    title: 'items6'
+	  }]
+	}, {
+	  headerName: 'ListF',
+	  items: [{
+	    title: 'items1'
+	  }, {
+	    title: 'items2'
+	  }, {
+	    title: 'items3'
+	  }, {
+	    title: 'items4'
+	  }, {
+	    title: 'items5'
+	  }, {
+	    title: 'items6'
+	  }]
+	}, {
+	  headerName: 'ListG',
+	  items: [{
+	    title: 'items1'
+	  }, {
+	    title: 'items2'
+	  }, {
+	    title: 'items3'
+	  }, {
+	    title: 'items4'
+	  }, {
+	    title: 'items5'
+	  }, {
+	    title: 'items6'
+	  }]
+	}, {
+	  headerName: 'ListH',
+	  items: [{
+	    title: 'items1'
+	  }, {
+	    title: 'items2'
+	  }, {
+	    title: 'items3'
+	  }, {
+	    title: 'items4'
+	  }, {
+	    title: 'items5'
+	  }, {
+	    title: 'items6'
+	  }]
+	}, {
+	  headerName: 'ListI',
+	  items: [{
+	    title: 'items1'
+	  }, {
+	    title: 'items2'
+	  }, {
+	    title: 'items3'
+	  }, {
+	    title: 'items4'
+	  }, {
+	    title: 'items5'
+	  }, {
+	    title: 'items6'
+	  }]
+	}, {
+	  headerName: 'ListJ',
+	  items: [{
+	    title: 'items1'
+	  }, {
+	    title: 'items2'
+	  }, {
+	    title: 'items3'
+	  }, {
+	    title: 'items4'
+	  }, {
+	    title: 'items5'
+	  }, {
+	    title: 'items6'
+	  }]
+	}, {
+	  headerName: 'ListK',
+	  items: [{
+	    title: 'items1'
+	  }, {
+	    title: 'items2'
+	  }, {
+	    title: 'items3'
+	  }, {
+	    title: 'items4'
+	  }, {
+	    title: 'items5'
+	  }, {
+	    title: 'items6'
+	  }]
+	}, {
+	  headerName: 'ListL',
+	  items: [{
+	    title: 'items1'
+	  }, {
+	    title: 'items2'
+	  }, {
+	    title: 'items3'
+	  }, {
+	    title: 'items4'
+	  }, {
+	    title: 'items5'
+	  }, {
+	    title: 'items6'
+	  }]
+	}, {
+	  headerName: 'ListE',
+	  items: [{
+	    title: 'items1'
+	  }, {
+	    title: 'items2'
+	  }, {
+	    title: 'items3'
+	  }, {
+	    title: 'items4'
+	  }, {
+	    title: 'items5'
+	  }, {
+	    title: 'items6'
+	  }]
+	}, {
+	  headerName: 'ListE',
 	  items: [{
 	    title: 'items1'
 	  }, {
