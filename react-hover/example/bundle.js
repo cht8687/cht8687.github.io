@@ -65,7 +65,7 @@
 /******/ 	}
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "b9d3a6ebbb7c6e1dc1e0"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "a80002a0518406a90741"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -661,7 +661,7 @@
 	          ' Basic '
 	        ),
 	        _react2.default.createElement(_2.default, {
-	          className: 'class1 class2 class3',
+	          className: 'basic',
 	          styles: styles.basic,
 	          componentHtml: componentHtml.basicComponentHtml,
 	          options: optionsCursorFalse
@@ -21312,7 +21312,9 @@
 	  _createClass(ReactHover, [{
 	    key: 'render',
 	    value: function render() {
-	      var componentHtml = this.props.componentHtml;
+	      var _props = this.props;
+	      var componentHtml = _props.componentHtml;
+	      var className = _props.className;
 	      var _state = this.state;
 	      var triggerComponentStyle = _state.triggerComponentStyle;
 	      var hoverComponentStyle = _state.hoverComponentStyle;
