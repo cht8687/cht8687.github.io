@@ -1,0 +1,2 @@
+webpackJsonp([0x81b8806e4260],{509:function(t,e){t.exports={data:{site:{siteMetadata:{title:"Haotian's blog"}},allMarkdownRemark:{edges:[{node:{excerpt:"Ok, from today on, I will write random posts!",fields:{slug:"/hello-world/"},frontmatter:{date:"31 May, 2018",title:"Hello World"}}}]}},pathContext:{}}}});
+//# sourceMappingURL=path---index-137cc47a590a2f0872a1.js.map
