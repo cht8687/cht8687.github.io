@@ -3,7 +3,7 @@ module.exports = {
     title: 'Haotian\'s blog',
     author: 'Haotian Chang',
     description: '',
-    siteUrl: 'https://cht8687.github.io',
+    siteUrl: 'https://github.com/cht8687',
   },
   pathPrefix: '/blog',
   plugins: [
